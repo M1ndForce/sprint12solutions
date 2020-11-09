@@ -1,0 +1,8 @@
+/shelf/
+/.idea
+/node_modules
+# Datasource local storage ignored files
+/../../../../../../:\Users\legen\IdeaProjects\untitled1\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
