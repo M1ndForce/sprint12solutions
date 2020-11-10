@@ -43,3 +43,31 @@ class SpeedLimiter {
     }
   }
 }
+
+//3
+const upperCase = (value) => {
+  return value.toString().toUpperCase();
+};
+
+const tripleExclaim = (value) => {
+  return value.toString() + "!!!";
+};
+
+const copy = (value) => {
+  const copy = value.toString();
+  return copy + " " + copy;
+};
+
+const split = (val) => val.split("_");
+
+const join = (arr) => arr.join(" ");
+
+const result = (val) => {
+  const firstAction = upperCase(val);
+  const secondAction = tripleExclaim(firstAction);
+  const thirdAction = copy(secondAction);
+  const forthAction = split(thirdAction);
+  return join(forthAction);
+};
+
+//4)
