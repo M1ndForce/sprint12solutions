@@ -22,3 +22,24 @@ const fnc = (arg1, arg2) => {
 function overloadedFunc(arg1 = [1, 2, 3], arg2 = 2, arg3 = fnc) {
   return arg3(arg1, arg2);
 }
+
+//2)
+const privateSpeed = new WeakMap();
+const privateWarning = new WeakMap();
+
+class SpeedLimiter {
+  constructor(speed, warningFn) {
+    privateSpeed.set(this, speed);
+    privateWarning.set(this, warningFn);
+  }
+
+  accelerate(value) {
+    privateSpeed.set(this, privateSpeed.get(this) + value);
+    console.log(`Current speed: ${privateSpeed.get(this)} km/h`);
+    if (privateSpeed.get(this) > 200) {
+      privateWarning.get(this)();
+      privateSpeed.set(this, 200);
+      console.log(`Current speed: ${privateSpeed.get(this)} km/h`);
+    }
+  }
+}
