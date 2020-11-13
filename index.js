@@ -123,3 +123,68 @@ class WarPlane extends Plane {
     return super.calcFlightRange() * this.aerodynamicsKoef;
   }
 }
+
+// 5)
+const pizzaMenu = {
+  SIZE_S: { param: "SIZE_S", price: 60, calorie: 300 },
+  SIZE_M: { param: "SIZE_M", price: 90, calorie: 450 },
+  SIZE_L: { param: "SIZE_L", price: 110, calorie: 600 },
+  KIND_MEAT: { param: "KIND_MEAT", price: 55, calorie: 230 },
+  KIND_FISH: { param: "KIND_FISH", price: 70, calorie: 150 },
+  KIND_CHEESE: { param: "KIND_CHEESE", price: 50, calorie: 200 },
+  KIND_VEGETARIAN: { param: "KIND_VEGETARIAN", price: 35, calorie: 50 },
+  INGREDIENT_TOMATOES: { param: "INGREDIENT_TOMATOES", price: 15, calorie: 5 },
+  INGREDIENT_PEPPER: { param: "INGREDIENT_PEPPER", price: 18, calorie: 5 },
+  INGREDIENT_BACON: { param: "INGREDIENT_BACON", price: 25, calorie: 40 },
+  INGREDIENT_OLIVES: { param: "INGREDIENT_OLIVES", price: 20, calorie: 0 },
+};
+
+class PizzaMaker {
+  constructor(size, kind, ingredient) {
+    this.size = size;
+    this.kind = kind;
+    this.ingredients = [];
+  }
+
+  addIngredient(ingredient) {
+    if (!this.ingredients.some((ing) => ing.param === ingredient.param)) {
+      this.ingredients = this.ingredients.concat(ingredient);
+      console.log(`${ingredient.param} has been added`);
+    } else {
+      console.log("Such an ingredient already exists!");
+    }
+  }
+
+  deleteIngredient(ingredient) {
+    this.ingredients = this.ingredients.filter(
+      (ing) => ing.param !== ingredient.param
+    );
+    console.log(`${ingredient.param} has been deleted`);
+  }
+
+  getIngredients() {
+    return this.ingredients;
+  }
+
+  getSize() {
+    return this.size.param;
+  }
+
+  getKind() {
+    return this.kind.param;
+  }
+
+  calculatePrice() {
+    return this.ingredients.reduce(
+      (acc, val) => val.price + acc,
+      this.size.price + this.kind.price
+    );
+  }
+
+  calculateCalories() {
+    return this.ingredients.reduce(
+      (acc, val) => val.calorie + acc,
+      this.size.calorie + this.kind.calorie
+    );
+  }
+}
